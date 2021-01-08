@@ -23,11 +23,7 @@ public class MulReservationStation {
 	
 		int minidx=-1;
 		for(int i=0;i<size;i++) {
-//			if(mulRS[i]!=null&&mulRS[i].busy==1&&mulRS[i].tag<min&&mulRS[i].qj==0&&mulRS[i].qk==0) {
-//				min=mulRS[i].tag;
-//				minidx=i;
-//			}
-			if(mulRS[i]!=null&&mulRS[i].busy==1&&mulRS[i].qj==0&&mulRS[i].qk==0) {
+		if(mulRS[i]!=null&&mulRS[i].busy==1&&mulRS[i].qj==0&&mulRS[i].qk==0) {
 				ans.add(i);
 			}
 		
@@ -37,7 +33,7 @@ public class MulReservationStation {
 	}
 	public String toString() {
 		StringBuilder sb=new StringBuilder();
-		String s="-----------------------------------------------------------------------\n";
+		String s="-------------------------------------------------------------------------------------------------------\n";
 		sb.append("the content of multiply Reservation station\n");
 		sb.append(s);
 		sb.append(String.format("%10s %10s %10s %10s %10s %10s %10s %10s %10s","Tag","busy","operation","Vj","Vk","Qj","Qk","A","Time")+"\n");

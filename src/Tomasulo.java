@@ -109,12 +109,11 @@ public class Tomasulo {
 		double vj = registerFile.registerFile[inst.j].value;
 		double vk = registerFile.registerFile[inst.k].value;
 		int qj = registerFile.registerFile[inst.j].Qi;
-		int qk = registerFile.registerFile[inst.k].Qi;  //we are bahayemmmm 
+		int qk = registerFile.registerFile[inst.k].Qi;   
 
 		registerFile.registerFile[inst.dest].Qi = globalTag;
 
 		ReservationStation rs = new ReservationStation(globalTag++, 1, inst.getTypeVal(), vj, vk, qj, qk, 0, addCycles);
-		//hereee
 		rs.instID = inst.id;
 		addRS.addRS[loc] = rs;
 
@@ -199,11 +198,7 @@ public class Tomasulo {
 		if (type == Instruction.Type.store) {
 			remove |= addStore(inst);
 		}
-		//	if(type==Instruction.Type.branch)
-		//	{
-		//			
-		//	}
-
+		
 		if (remove) {
 			int remainingInstruction=instructions.size();
 			int idx=tracingInstructions.size()-remainingInstruction;
@@ -264,23 +259,22 @@ public class Tomasulo {
 		for(int loc : locations) {
 			ReservationStation rs = addRS.addRS[loc];
 			int instID = rs.instID;
-			if (rs.time > 1) {
-				//if it was issued in that same clock cycle
+			//Remaining time is greater than 1.
+			if (rs.time > 1) {  
+				//If it was issued in that same clock cycle, don't start execution yet.
 				if(tracingInstructions.get(instID).issue == clock)
 					continue;
-
-
+				//This is the first cycle of execution. 
 				if(rs.time == addCycles) {
 					tracingInstructions.get(instID).startExecution = clock;
 				}
 				rs.time--;
-			} else {
+			}
+			//This is the last cycle of execution
+			else {
 				rs.busy = 0;
 				rs.time--;
-
 				tracingInstructions.get(instID).endExecution = clock;
-				//	tracingInstructions.get(instID).writeResult = clock + 1;
-
 				double result = rs.vj + rs.vk;
 				CDB.add(new tagValue(rs.tag, result,instID));
 			}
@@ -289,29 +283,20 @@ public class Tomasulo {
 	}
 
 	static void handleMulUnit() {
-
-		//		int loc = mulRS.nextInstruction();
 		ArrayList<Integer> locations=mulRS.nextInstruction();
 		for(int loc:locations) {
-			//		if (loc < 0)
-			//			return;
 			ReservationStation rs = mulRS.mulRS[loc];
 			int instID = rs.instID;
 			if (rs.time > 1) {
-				//hereee
 				if(tracingInstructions.get(instID).issue == clock)
 					continue;
-
 				if(rs.time == mulCycles) {
 					tracingInstructions.get(instID).startExecution = clock;
 				}
 				rs.time--;
 			} else {
-				//hereeee			
 				tracingInstructions.get(instID).endExecution = clock;
-				//	tracingInstructions.get(instID).writeResult = clock + 1;
 				rs.time--;
-
 				rs.busy = 0;
 				double result = rs.vj * rs.vk;
 				CDB.add(new tagValue(rs.tag, result,instID));
@@ -364,66 +349,70 @@ public class Tomasulo {
 	//	}
 
 
-	//TODO 
-	//Ask Dr. about this and remember to handle starting the execute after the issue after knowing what to do.
 	static void handleMem() {
 		int locLoad = loadBuffers.nextInstruction();
 		int locStore = storeBuffers.nextInstruction();
+		
+		//There are no ready load instructions
 		if (locLoad == -1)
 			locLoad = Integer.MAX_VALUE;
+		
+		//There are no ready store instructions
 		if (locStore == -1)
 			locStore = Integer.MAX_VALUE;
-		if (locLoad < locStore ) {
-			// load inst
+		
+		//Load instruction was issued before the store instruction, so load instruction is executed
+		if (locLoad < locStore) {
 			LoadBuffers.BufferEntry be = loadBuffers.loadBuffers[locLoad];
 			int instID = be.instID;
-			if(tracingInstructions.get(instID).issue != clock) {
+			
+			//If it was issued in that same clock cycle, don't start execution yet.
+			if(tracingInstructions.get(instID).issue != clock){
 				if (be.time > 1) {
-					//hereeeee
-					//this doesn't work hereee, you have to change it in next Instruction function
-					//				if(tracingInstructions.get(instID).issue == clock)
-					//					return;
-
+					
+					//This is the first cycle of execution.
 					if(be.time == loadCycles) {
 						tracingInstructions.get(instID).startExecution = clock;
 					}
 					be.time--;
-				} else {
-					//hereeeee
+				} 
+	
+				//This is the last cycle of execution
+				else {
 					tracingInstructions.get(instID).endExecution = clock;
-//					tracingInstructions.get(instID).writeResult = clock + 1;
 					be.time --;
 					be.busy = 0;
+					
+					//Get the value from memory location and push it to the CDB queue.
 					CDB.add(new tagValue(be.tag, mem.data[be.address % mem.size].value, instID));
 				}
 			}
-
 		} 
+		//Store instruction was issued before the load instruction
 		if (locStore < locLoad) {
-			System.out.println(" entered store "+locStore);
-
 			StoreBuffers.BufferEntry be = storeBuffers.storeBuffers[locStore];
 			int instID = be.instID;
+			
+			//If it was issued in that same clock cycle, don't start execution yet.
 			if(tracingInstructions.get(instID).issue != clock) {
-
 				if (be.time > 1) {
+				
+					//This is the first cycle of execution.
 					if(be.time == loadCycles) {
-						System.out.println(" assigned start execution");
 						tracingInstructions.get(instID).startExecution = clock;
 					}
-
 					be.time--;
-				} else {
+				}
+				//This is the last cycle of execution
+				else {
 					tracingInstructions.get(instID).endExecution = clock;
-//					tracingInstructions.get(instID).writeResult = clock + 1;
-
 					be.busy = 0;
 					be.time --;
+				
+					//Store the value in memory
 					mem.data[be.address % mem.size].value = be.value;
-
 					CDB.add(new tagValue(be.tag, be.value, instID));
 				}
-
 			}
 		}
 	}
@@ -481,9 +470,9 @@ public class Tomasulo {
 
 	public static void display() {
 		printTracingInstructions();
-		//		System.out.println(registerFile.toString());
-		//		System.out.println(addRS.toString());
-		//		System.out.println(mulRS);
+		System.out.println(registerFile.toString());
+		System.out.println(addRS.toString());
+		System.out.println(mulRS);
 		System.out.println(loadBuffers);
 		System.out.println(storeBuffers);
 
@@ -511,9 +500,10 @@ mul 10 1 6
 s.d 10 0 10
 l.d 5 0 10
 
-
-
-
+add 8 2 6
+add 8 2 6
+add 8 2 6
+add 8 2 6
 
 
  */

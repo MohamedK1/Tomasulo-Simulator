@@ -24,7 +24,7 @@ double value;
 
 public String toString() {
 	StringBuilder sb=new StringBuilder();
-	String s="-----------------------------------------------------------------------\n";
+	String s="----------------------------------\n";
 	sb.append("the content of float regitser file\n");
 	sb.append(s);
 	sb.append(String.format("%10s %10s \n","Qi","value"));

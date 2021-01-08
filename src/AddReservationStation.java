@@ -27,10 +27,6 @@ public ArrayList<Integer> nextInstruction() {
 	int min=Integer.MAX_VALUE;
 	int minidx=-1;
 	for(int i=0;i<size;i++) {
-//		if(addRS[i]!=null&&addRS[i].busy==1&&addRS[i].tag<min&&addRS[i].qj==0&&addRS[i].qk==0){
-//		min=addRS[i].tag;
-//		minidx=i;
-//	}
 		if(addRS[i]!=null&&addRS[i].busy==1&&addRS[i].qj==0&&addRS[i].qk==0){
 		ans.add(i);
 		}
@@ -40,7 +36,7 @@ public ArrayList<Integer> nextInstruction() {
 }
 public String toString() {
 	StringBuilder sb=new StringBuilder();
-	String s="-----------------------------------------------------------------------\n";
+	String s="-------------------------------------------------------------------------------------------------------\n";
 	sb.append("the content of add Reservation station\n");
 	sb.append(s);
 	sb.append(String.format("%10s %10s %10s %10s %10s %10s %10s %10s %10s","Tag","busy","operation","Vj","Vk","Qj","Qk","A","Time")+"\n");
