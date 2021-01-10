@@ -184,13 +184,15 @@ public class Tomasulo {
 		Instruction inst = instructions.get(0);
 		boolean remove = false;
 		Instruction.Type type = inst.type;
-		if (type == Instruction.Type.add) {
+		// start mk
+		if (type == Instruction.Type.add||type == Instruction.Type.sub) {
 			remove |= addAdd(inst);
 		}
-		if (type == Instruction.Type.mul) {
+		if (type == Instruction.Type.mul||type == Instruction.Type.div) {
 			remove |= addMul(inst);
 		}
-
+		//		end mk 
+		
 		if (type == Instruction.Type.load) {
 			remove |= addLoad(inst);
 		}
@@ -198,7 +200,7 @@ public class Tomasulo {
 		if (type == Instruction.Type.store) {
 			remove |= addStore(inst);
 		}
-		
+
 		if (remove) {
 			int remainingInstruction=instructions.size();
 			int idx=tracingInstructions.size()-remainingInstruction;
@@ -276,6 +278,10 @@ public class Tomasulo {
 				rs.time--;
 				tracingInstructions.get(instID).endExecution = clock;
 				double result = rs.vj + rs.vk;
+
+				//new
+				if(rs.op==4)
+					result = rs.vj - rs.vk;
 				CDB.add(new tagValue(rs.tag, result,instID));
 			}
 		}
@@ -299,6 +305,11 @@ public class Tomasulo {
 				rs.time--;
 				rs.busy = 0;
 				double result = rs.vj * rs.vk;
+
+				//new
+				if(rs.op==5)
+					result = rs.vj / rs.vk;
+
 				CDB.add(new tagValue(rs.tag, result,instID));
 			}
 		}
@@ -352,37 +363,37 @@ public class Tomasulo {
 	static void handleMem() {
 		int locLoad = loadBuffers.nextInstruction();
 		int locStore = storeBuffers.nextInstruction();
-		
+
 		//There are no ready load instructions
 		if (locLoad == -1)
 			locLoad = Integer.MAX_VALUE;
-		
+
 		//There are no ready store instructions
 		if (locStore == -1)
 			locStore = Integer.MAX_VALUE;
-		
+
 		//Load instruction was issued before the store instruction, so load instruction is executed
 		if (locLoad < locStore) {
 			LoadBuffers.BufferEntry be = loadBuffers.loadBuffers[locLoad];
 			int instID = be.instID;
-			
+
 			//If it was issued in that same clock cycle, don't start execution yet.
 			if(tracingInstructions.get(instID).issue != clock){
 				if (be.time > 1) {
-					
+
 					//This is the first cycle of execution.
 					if(be.time == loadCycles) {
 						tracingInstructions.get(instID).startExecution = clock;
 					}
 					be.time--;
 				} 
-	
+
 				//This is the last cycle of execution
 				else {
 					tracingInstructions.get(instID).endExecution = clock;
 					be.time --;
 					be.busy = 0;
-					
+
 					//Get the value from memory location and push it to the CDB queue.
 					CDB.add(new tagValue(be.tag, mem.data[be.address % mem.size].value, instID));
 				}
@@ -392,11 +403,11 @@ public class Tomasulo {
 		if (locStore < locLoad) {
 			StoreBuffers.BufferEntry be = storeBuffers.storeBuffers[locStore];
 			int instID = be.instID;
-			
+
 			//If it was issued in that same clock cycle, don't start execution yet.
 			if(tracingInstructions.get(instID).issue != clock) {
 				if (be.time > 1) {
-				
+
 					//This is the first cycle of execution.
 					if(be.time == loadCycles) {
 						tracingInstructions.get(instID).startExecution = clock;
@@ -408,7 +419,7 @@ public class Tomasulo {
 					tracingInstructions.get(instID).endExecution = clock;
 					be.busy = 0;
 					be.time --;
-				
+
 					//Store the value in memory
 					mem.data[be.address % mem.size].value = be.value;
 					CDB.add(new tagValue(be.tag, be.value, instID));

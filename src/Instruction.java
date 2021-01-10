@@ -3,7 +3,7 @@ public class Instruction {
 	String instStr;
 
 	public static enum Type {
-		add, mul, load, store
+		add, mul, load, store,sub,div
 	};
 	
 	public int getTypeVal() {
@@ -11,6 +11,8 @@ public class Instruction {
 		if(type==Type.mul)return 1;
 		if(type==Type.load)return 2;
 		if(type==Type.store)return 3;
+		if(type==Type.sub)return 4;
+		if(type==Type.div)return 5;
 		return -1;
 	}
 	public String getType() {
@@ -18,6 +20,8 @@ public class Instruction {
 		if(type==Type.mul)return "MUL.D";
 		if(type==Type.load)return "L.D";
 		if(type==Type.store)return "S.D";
+		if(type==Type.sub)return "SUB.D";
+		if(type==Type.div)return "DIV.D";
 		return "";
 		
 	}
@@ -32,6 +36,10 @@ public class Instruction {
 			type = Type.valueOf("add");
 		else if (in[0].toLowerCase().contains("mul"))
 			type = Type.valueOf("mul");
+		else if (in[0].toLowerCase().contains("sub"))
+			type = Type.valueOf("sub");
+		else if (in[0].toLowerCase().contains("div"))
+			type = Type.valueOf("div");
 		else if (in[0].toLowerCase().contains("l"))
 			type = Type.valueOf("load");
 		else if (in[0].toLowerCase().contains("s"))
