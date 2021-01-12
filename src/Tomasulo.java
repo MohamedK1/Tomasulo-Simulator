@@ -376,7 +376,6 @@ public class Tomasulo {
 		if (locLoad < locStore) {
 			LoadBuffers.BufferEntry be = loadBuffers.loadBuffers[locLoad];
 			int instID = be.instID;
-			System.out.println(instID+"***************");
 
 			//If it was issued in that same clock cycle, don't start execution yet.
 			if(tracingInstructions.get(instID).issue != clock){
