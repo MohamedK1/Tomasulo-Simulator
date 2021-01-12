@@ -42,7 +42,7 @@ public class Tomasulo {
 		String s="------------------------------------------------------------------------------------------------------------------\n";
 		sb.append("the Instruction tracing\n");
 		sb.append(s);
-		sb.append(String.format("%20s %15s %10s %10s %10s %10s %10s %10s","Instruction type","destination","j","k","issue","start exec","end exec","write result")+"\n");
+		sb.append(String.format("%20s %15s %10s %10s %10s %10s %10s %10s","Instruction type","destination","j","k","issue","start exec","end exec","publish")+"\n");
 		sb.append(s);
 		for(TracingEntry e:tracingInstructions) {
 			sb.append(String.format("%20s %15s %10s %10s %10s %10s %10s %10s",e.inst.getType(),e.inst.dest,e.inst.j,e.inst.k,e.issue,e.startExecution,
@@ -217,8 +217,8 @@ public class Tomasulo {
 			if (registerFile.registerFile[i].Qi == tag) {
 				registerFile.registerFile[i].Qi = 0;
 				registerFile.registerFile[i].value = val;
-				tracingInstructions.get(tagValue.instID).writeResult=clock;
 			}
+		tracingInstructions.get(tagValue.instID).writeResult=clock;
 		for (int i = 0; i < addRS.size; i++) {
 			if (addRS.addRS[i].qj == tag) {
 				addRS.addRS[i].qj = 0;
@@ -251,8 +251,8 @@ public class Tomasulo {
 			if (mem.data[i].Qi == tag) {
 				mem.data[i].Qi = 0;
 				mem.data[i].value = val;
-				tracingInstructions.get(tagValue.instID).writeResult=clock;
 			}
+		tracingInstructions.get(tagValue.instID).writeResult=clock;
 
 	}
 
@@ -279,7 +279,7 @@ public class Tomasulo {
 				tracingInstructions.get(instID).endExecution = clock;
 				double result = rs.vj + rs.vk;
 
-				//new
+				//mk
 				if(rs.op==4)
 					result = rs.vj - rs.vk;
 				CDB.add(new tagValue(rs.tag, result,instID));
@@ -306,7 +306,7 @@ public class Tomasulo {
 				rs.busy = 0;
 				double result = rs.vj * rs.vk;
 
-				//new
+				//mk
 				if(rs.op==5)
 					result = rs.vj / rs.vk;
 
@@ -376,6 +376,7 @@ public class Tomasulo {
 		if (locLoad < locStore) {
 			LoadBuffers.BufferEntry be = loadBuffers.loadBuffers[locLoad];
 			int instID = be.instID;
+			System.out.println(instID+"***************");
 
 			//If it was issued in that same clock cycle, don't start execution yet.
 			if(tracingInstructions.get(instID).issue != clock){
@@ -507,6 +508,7 @@ add 6 8 2
 
 
 /*
+ 
 mul 10 1 6
 s.d 10 0 10
 l.d 5 0 10

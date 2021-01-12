@@ -42,7 +42,7 @@ public String toString() {
 	sb.append(String.format("%10s %10s %10s %10s %10s %10s %10s %10s %10s","Tag","busy","operation","Vj","Vk","Qj","Qk","A","Time")+"\n");
 	sb.append(s);
 	for(int i=0;i<size;i++) {
-		sb.append(String.format("%10s %10s %10s %10s %10s %10s %10s %10s %10s",addRS[i].tag,addRS[i].busy,"ADD.D",addRS[i].vj
+		sb.append(String.format("%10s %10s %10s %10s %10s %10s %10s %10s %10s",addRS[i].tag,addRS[i].busy,addRS[i].op==4?"SUB.D":"ADD.D",addRS[i].vj
 				,addRS[i].vk,addRS[i].qj,addRS[i].qk,addRS[i].A,addRS[i].time)+"\n");
 		sb.append(s);
 			

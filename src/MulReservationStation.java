@@ -39,7 +39,7 @@ public class MulReservationStation {
 		sb.append(String.format("%10s %10s %10s %10s %10s %10s %10s %10s %10s","Tag","busy","operation","Vj","Vk","Qj","Qk","A","Time")+"\n");
 		sb.append(s);
 		for(int i=0;i<size;i++) {
-			sb.append(String.format("%10s %10s %10s %10s %10s %10s %10s %10s %10s",mulRS[i].tag,mulRS[i].busy,"MUL.D",mulRS[i].vj
+			sb.append(String.format("%10s %10s %10s %10s %10s %10s %10s %10s %10s",mulRS[i].tag,mulRS[i].busy,mulRS[i].op==5?"DIV.D":"MUL.D",mulRS[i].vj
 					,mulRS[i].vk,mulRS[i].qj,mulRS[i].qk,mulRS[i].A,mulRS[i].time)+"\n");
 			sb.append(s);
 				
