@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8ea39925-6b76-47ba-bf69-d031993de5de" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Microprocessors_Project.iml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1mw4XyBiXwUGRGF7p7EuKIrif9h" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Tomasulo" />
+      <module name="Microprocessors_Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8ea39925-6b76-47ba-bf69-d031993de5de" name="Default Changelist" comment="" />
+      <created>1610391369421</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1610391369421</updated>
+      <workItem from="1610391371019" duration="684000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="231" y="55" key="#Project_Structure" timestamp="1610391990191">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="231" y="55" key="#Project_Structure/0.0.1500.960@0.0.1500.960" timestamp="1610391990191" />
+    <state x="206" y="135" width="1086" height="736" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1610392059972">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="206" y="135" width="1086" height="736" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1500.960@0.0.1500.960" timestamp="1610392059972" />
+    <state x="481" y="295" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1610392057394">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="481" y="295" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1500.960@0.0.1500.960" timestamp="1610392057394" />
+    <state x="378" y="169" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1610391479988">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="378" y="169" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1500.960@0.0.1500.960" timestamp="1610391479988" />
+    <state x="460" y="79" width="579" height="801" key="find.popup" timestamp="1610391497573">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="460" y="79" width="579" height="801" key="find.popup/0.0.1500.960@0.0.1500.960" timestamp="1610391497573" />
+  </component>
+</project>
