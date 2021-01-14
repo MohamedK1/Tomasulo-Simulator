@@ -37,9 +37,9 @@ public ArrayList<Integer> nextInstruction() {
 public String toString() {
 	StringBuilder sb=new StringBuilder();
 	String s="-------------------------------------------------------------------------------------------------------\n";
-	sb.append("the content of add Reservation station\n");
+	sb.append("The content of the add reservation station\n");
 	sb.append(s);
-	sb.append(String.format("%10s %10s %10s %10s %10s %10s %10s %10s %10s","Tag","busy","operation","Vj","Vk","Qj","Qk","A","Time")+"\n");
+	sb.append(String.format("%10s %10s %10s %10s %10s %10s %10s %10s %10s","Tag","Busy","Operation","Vj","Vk","Qj","Qk","A","Time")+"\n");
 	sb.append(s);
 	for(int i=0;i<size;i++) {
 		sb.append(String.format("%10s %10s %10s %10s %10s %10s %10s %10s %10s",addRS[i].tag,addRS[i].busy,addRS[i].op==4?"SUB.D":"ADD.D",addRS[i].vj

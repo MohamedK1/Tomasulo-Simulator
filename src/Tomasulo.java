@@ -40,9 +40,9 @@ public class Tomasulo {
 	static void printTracingInstructions() {
 		StringBuilder sb=new StringBuilder();
 		String s="------------------------------------------------------------------------------------------------------------------\n";
-		sb.append("the Instruction tracing\n");
+		sb.append("The instruction tracing\n");
 		sb.append(s);
-		sb.append(String.format("%20s %15s %10s %10s %10s %10s %10s %10s","Instruction type","destination","j","k","issue","start exec","end exec","publish")+"\n");
+		sb.append(String.format("%20s %15s %10s %10s %10s %10s %10s %10s","Instruction type","Destination","J","K","Issue","Start Exec","End Exec","Publish")+"\n");
 		sb.append(s);
 		for(TracingEntry e:tracingInstructions) {
 			sb.append(String.format("%20s %15s %10s %10s %10s %10s %10s %10s",e.inst.getType(),e.inst.dest,e.inst.j,e.inst.k,e.issue,e.startExecution,
@@ -91,10 +91,10 @@ public class Tomasulo {
 		Scanner sc = new Scanner(System.in);
 
 		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("enter number of instructions ");
+		System.out.println("Please enter the number of instructions ");
 		int n = sc.nextInt();
 		for(int i=0;i<n;i++) {
-			//System.out.println("please enter an instruction");
+			System.out.println("Please enter an instruction");
 			String s = bf.readLine();
 			Instruction inst=new Instruction(s);
 			inst.id=i;
@@ -467,13 +467,13 @@ public class Tomasulo {
 		System.out.println("The whole system status initially");
 		display();
 
-		System.out.println("press n for next Cycle");
+		System.out.println("Press n for next Cycle");
 		while ((s =bf.readLine()).equals("n")) {
 			System.out.println("Clock Cycle: " + clock);
 			nextCycle();
 			display();
 
-			System.out.println("press n for next Cycle");
+			System.out.println("Press n for next Cycle");
 			//s = bf.readLine();
 		}
 

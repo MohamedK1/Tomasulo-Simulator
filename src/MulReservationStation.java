@@ -34,9 +34,9 @@ public class MulReservationStation {
 	public String toString() {
 		StringBuilder sb=new StringBuilder();
 		String s="-------------------------------------------------------------------------------------------------------\n";
-		sb.append("the content of multiply Reservation station\n");
+		sb.append("The content of the multiply reservation station\n");
 		sb.append(s);
-		sb.append(String.format("%10s %10s %10s %10s %10s %10s %10s %10s %10s","Tag","busy","operation","Vj","Vk","Qj","Qk","A","Time")+"\n");
+		sb.append(String.format("%10s %10s %10s %10s %10s %10s %10s %10s %10s","Tag","Busy","Operation","Vj","Vk","Qj","Qk","A","Time")+"\n");
 		sb.append(s);
 		for(int i=0;i<size;i++) {
 			sb.append(String.format("%10s %10s %10s %10s %10s %10s %10s %10s %10s",mulRS[i].tag,mulRS[i].busy,mulRS[i].op==5?"DIV.D":"MUL.D",mulRS[i].vj

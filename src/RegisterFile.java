@@ -25,9 +25,9 @@ double value;
 public String toString() {
 	StringBuilder sb=new StringBuilder();
 	String s="----------------------------------------\n";
-	sb.append("the content of float regitser file\n");
+	sb.append("The content of the float regitser file\n");
 	sb.append(s);
-	sb.append(String.format("%20s %10s %10s \n","register number","Qi","value"));
+	sb.append(String.format("%20s %10s %10s \n","Register Number","Qi","Value"));
 	sb.append(s);
 	for(int i=0;i<size;i++) {
 		sb.append(String.format("%20s %10s %10s \n",i,registerFile[i].Qi,registerFile[i].value));

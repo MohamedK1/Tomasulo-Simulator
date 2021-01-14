@@ -62,9 +62,9 @@ public class StoreBuffers {
 	public String toString() {
 		StringBuilder sb=new StringBuilder();
 		String s="-----------------------------------------------------------------------\n";
-		sb.append("the content of store Buffers\n");
+		sb.append("The content of the store buffers\n");
 		sb.append(s);
-		sb.append(String.format("%10s %10s %10s %10s %10s %10s ","Tag","busy","address","Value","Qi","Time")+"\n");
+		sb.append(String.format("%10s %10s %10s %10s %10s %10s ","Tag","Busy","Address","Value","Qi","Time")+"\n");
 		sb.append(s);
 		for(int i=0;i<size;i++) {
 			sb.append(String.format("%10s %10s %10s %10s %10s %10s ",storeBuffers[i].tag,storeBuffers[i].busy,storeBuffers[i].address,storeBuffers[i].value,storeBuffers[i].Qi,storeBuffers[i].time)+"\n");

@@ -58,9 +58,9 @@ public int nextInstruction() {
 public String toString() {
 	StringBuilder sb=new StringBuilder();
 	String s="-----------------------------------------------------------------------\n";
-	sb.append("the content of Load Buffers\n");
+	sb.append("The content of the load buffers\n");
 	sb.append(s);
-	sb.append(String.format("%10s %10s %10s %10s ","Tag","busy","address","Time")+"\n");
+	sb.append(String.format("%10s %10s %10s %10s ","Tag","Busy","Address","Time")+"\n");
 	sb.append(s);
 	for(int i=0;i<size;i++) {
 		sb.append(String.format("%10s %10s %10s %10s \n",loadBuffers[i].tag,loadBuffers[i].busy,loadBuffers[i].address,loadBuffers[i].time));
